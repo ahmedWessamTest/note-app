@@ -24,11 +24,12 @@ export class RegiserComponent implements OnInit {
       name: [null, [Validators.required, Validators.minLength(3), Validators.maxLength(10)]],
       email: [null, [Validators.required, Validators.email]],
       password: [null, [Validators.required, Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/)]],
-      age: [null, [Validators.required, Validators.min(3), Validators.max(130)], Validators.pattern(/^\d{,3}$/)],
+      age: [null, [Validators.required, Validators.min(3), Validators.max(130)]],
       phone: [null, [Validators.required, Validators.pattern(/^01(0|1|2|5)[0-9]{8}$/)]],
     })
   }
   submitRegister(): void {
+
     if (this.registerForm.valid) {
       this.isLoading.set(true);
       this._AuthService.postEmail(this.registerForm.value).subscribe({
