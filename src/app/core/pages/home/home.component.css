@@ -1,0 +1,22 @@
+.masonry-grid-item {
+  width: 30%; /* Adjust for desktop */
+  margin-bottom: 10px;
+}
+
+@media (max-width: 1024px) {
+  .masonry-grid-item {
+    width: 45%; /* Adjust for tablets */
+  }
+}
+
+@media (max-width: 768px) {
+  .masonry-grid-item {
+    width: 100%; /* Adjust for mobile phones */
+  }
+}
+.card {
+  padding: 1rem;
+  background-color: var(--main-white);
+  color: #595550;
+  font-weight: bold;
+}

@@ -1,12 +1,12 @@
-import { Injectable } from '@angular/core';
+import { Injectable, signal, WritableSignal } from '@angular/core';
 import { jwtDecode } from "jwt-decode";
 @Injectable({
   providedIn: 'root'
 })
 export class UserDataService {
-  userData!: any;
+  userData: WritableSignal<any> = signal({});
   shareUserData() {
     const token = localStorage.getItem('token')!;
-    const decoded = jwtDecode(token);
+    this.userData.set(jwtDecode(token));
   }
 }

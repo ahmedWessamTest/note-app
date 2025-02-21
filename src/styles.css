@@ -1,1 +1,49 @@
 /* You can add global styles to this file, and also import other style files */
+:root {
+  --main-color: #f8eee2;
+  --main-white: #fffdfa;
+}
+@font-face {
+  font-family: "Titan One";
+  src: url("../public/fonts/Titan_One/TitanOne-Regular.ttf");
+}
+@font-face {
+  font-family: "Nunito";
+  src: url("../public/fonts/Nunito/Nunito-VariableFont_wght.ttf");
+}
+body {
+  font-family: "Nunito", serif;
+  background-color: var(--main-color);
+}
+h1 {
+  font-family: "Titan One", serif;
+  font-size: 1.25rem;
+}
+.bg-main {
+  background-color: var(--main-color);
+}
+.main-input {
+  background-color: var(--main-white) !important;
+  border: none;
+  padding-block: 0.75rem;
+}
+.main-input:focus {
+  box-shadow: 0 0 10px 0px #d7be9f;
+}
+.main-white-bg {
+  background-color: var(--main-white) !important;
+}
+.main-white-text {
+  color: var(--main-white) !important;
+}
+.btn-main {
+  background-color: #d9614c;
+  color: var(--main-white);
+}
+.btn-main:hover {
+  background-color: #df5138;
+  color: var(--main-white);
+}
+.cr-pointer {
+  cursor: pointer;
+}

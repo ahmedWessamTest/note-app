@@ -1,13 +1,9 @@
-<div class="mx-auto col-sm-8 col-md-6 col-lg-4 px-2">
-  <form
-    class="border rounded p-2 mt-4"
-    [formGroup]="registerForm"
-    (ngSubmit)="submitRegister()"
-  >
+<div class="mx-auto col-sm-8 col-md-6 col-lg-4 px-2 bg-main">
+  <form class="p-2" [formGroup]="registerForm" (ngSubmit)="submitRegister()">
     <div class="mb-3">
       <input
         type="text"
-        class="form-control"
+        class="form-control main-input"
         [class.is-invalid]="
           registerForm.get('name')?.errors &&
           (registerForm.get('name')?.dirty || registerForm.get('name')?.touched)
@@ -15,7 +11,7 @@
         formControlName="name"
         placeholder="Name"
       />
-      <div class="invalid-feedback">should fill this input</div>
+      <div class="invalid-feedback">min 3 characters</div>
     </div>
     <div class="mb-3">
       <input
@@ -26,10 +22,10 @@
           (registerForm.get('email')?.dirty ||
             registerForm.get('email')?.touched)
         "
-        class="form-control"
+        class="form-control main-input"
         placeholder="email"
       />
-      <div class="invalid-feedback">should fill this input</div>
+      <div class="invalid-feedback">Email not valid</div>
     </div>
     <div class="mb-3">
       <input
@@ -40,10 +36,13 @@
           (registerForm.get('password')?.dirty ||
             registerForm.get('password')?.touched)
         "
-        class="form-control"
+        class="form-control main-input"
         placeholder="password"
       />
-      <div class="invalid-feedback">should fill this input</div>
+      <div class="invalid-feedback">
+        password should have at least one special character - capital character
+        - number
+      </div>
     </div>
     <div class="mb-3">
       <input
@@ -53,10 +52,10 @@
           registerForm.get('age')?.errors &&
           (registerForm.get('age')?.dirty || registerForm.get('age')?.touched)
         "
-        class="form-control"
+        class="form-control main-input"
         placeholder="Age"
       />
-      <div class="invalid-feedback">should fill this input</div>
+      <div class="invalid-feedback">valid for numbers only between 3 - 130</div>
     </div>
     <div class="mb-3">
       <input
@@ -67,22 +66,22 @@
           (registerForm.get('phone')?.dirty ||
             registerForm.get('phone')?.touched)
         "
-        class="form-control"
+        class="form-control main-input"
         placeholder="Phone"
       />
-      <div class="invalid-feedback">should fill this input</div>
+      <div class="invalid-feedback">not valid egyptian phone number</div>
     </div>
     <div class="mt-3">
-      <button type="submit" class="btn btn-primary">register</button>
+      <app-submit-button text="Register" />
     </div>
-    @if(isLoading){
+    @if(isLoading()){
     <div class="d-flex justify-content-center align-items-center">
       <div class="spinner-border text-primary" role="status">
         <span class="visually-hidden">Loading...</span>
       </div>
     </div>
-    } @if (errorMsg) {
-    <div class="alert alert-danger text-center mt-3">{{ errorMsg }}</div>
+    } @if (errorMsg()) {
+    <div class="alert alert-danger text-center mt-3">{{ errorMsg() }}</div>
     }
   </form>
 </div>

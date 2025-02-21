@@ -1,0 +1,10 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  min-height: 100vh;
+  background-color: var(--main-color);
+}
+input {
+  background-color: #fffdfa;
+}
