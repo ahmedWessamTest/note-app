@@ -24,7 +24,7 @@ export class HomeComponent implements OnInit, AfterViewChecked {
   private readonly _FormBuilder = inject(FormBuilder);
   private readonly _NoteService = inject(NoteService);
 
-  notesData: WritableSignal<INote[]> = signal([]);
+  notesData: WritableSignal<INote[] | null> = signal(null);
   addForm!: FormGroup;
   updateForm!: FormGroup;
   NoteId: WritableSignal<string> = signal('');
@@ -65,13 +65,13 @@ export class HomeComponent implements OnInit, AfterViewChecked {
           this.notesData.set(res.notes);
         } else {
           console.warn("No notes found.");
-          this.notesData.set([]);
+          this.notesData.set(null);
         }
       },
       error: (err) => {
         console.error("Error in get note API", err)
         if (err.error.statusCode === 404) {
-          this.notesData.set([]);
+          this.notesData.set(null);
           console.warn("Notes not found (404).");
         } else if (err.error.statusCode === 500) {
           console.error("Internal server error (500). Please try again later.");
@@ -80,6 +80,8 @@ export class HomeComponent implements OnInit, AfterViewChecked {
         }
       }
     })
+    console.log(this.notesData());
+
   }
 
   getNoteData(id: string, title: string, content: string): void {
@@ -107,13 +109,12 @@ export class HomeComponent implements OnInit, AfterViewChecked {
     this._NoteService.deleteNote(this.NoteId()).subscribe({
       next: (res) => {
         if (res.msg === 'done') {
+          this.notesData.set(null)
           this.displayData();
         }
       },
       error: (err) => {
-        if (err.error.msg === 'not notes found') {
-          this.notesData.set([]);
-        }
+        this.notesData.set(null)
         console.error("Error in update API:", err);
       }
     })

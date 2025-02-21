@@ -20,3 +20,19 @@
   color: #595550;
   font-weight: bold;
 }
+.masonry-grid:empty {
+  height: auto !important;
+}
+.empty-content {
+  display: block;
+  position: relative;
+  height: auto;
+  text-align: center;
+}
+.empty-content h3 {
+  color: #403b36;
+  font-size: 1.5rem;
+}
+.empty-content p {
+  color: #595550;
+}
